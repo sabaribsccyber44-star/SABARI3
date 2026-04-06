@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRO-PORTFOLIO // ACCESS GRANTED</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Inter:wght@400;700&display=swap');
+
+        :root {
+            --neon-blue: #00f2ff;
+            --dark-bg: #020617;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scroll during intro */
+        }
+
+        /* Hacker Boot Sequence */
+        #boot-screen {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            font-family: 'Fira Code', monospace;
+            color: var(--neon-blue);
+        }
+
+        .cursor { display: inline-block; width: 10px; height: 20px; background: var(--neon-blue); animation: blink 0.8s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Binary Rain */
+        #rain-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* Glass UI */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.15);
+        }
+
+        .neon-text {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+
+        /* Portal Reveal Animation */
+        .reveal { animation: portalOpen 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+        @keyframes portalOpen {
+            from { clip-path: inset(50% 50% 50% 50%); filter: brightness(5); }
+            to { clip-path: inset(0% 0% 0% 0%); filter: brightness(1); }
+        }
+
+        .hidden-ui { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="boot-screen">
+        <div class="max-w-2xl mx-auto">
+            <p id="boot-text"></p><span class="cursor"></span>
+        </div>
+    </div>
+
+    <canvas id="rain-canvas"></canvas>
+
+    <main id="main-ui" class="hidden-ui min-h-screen">
+        <nav class="p-6 flex justify-between items-center border-b border-cyan-900/50 bg-slate-950/50 backdrop-blur-md sticky top-0 z-50">
+            <div class="font-mono text-xl font-bold neon-text tracking-tighter">
+                &gt; WELCOME_USER...
+            </div>
+            <ul class="flex gap-8 font-mono text-sm uppercase tracking-widest text-cyan-500/70">
+                <li class="hover:text-cyan-400 cursor-pointer transition">Projects</li>
+                <li class="hover:text-cyan-400 cursor-pointer transition">Terminal</li>
+                <li class="hover:text-cyan-400 cursor-pointer transition underline decoration-cyan-500">Contact</li>
+            </ul>
+        </nav>
+
+        <section class="max-w-5xl mx-auto px-6 py-20">
+            <header class="mb-20">
+                <h1 class="font-mono text-cyan-500 mb-2 uppercase tracking-widest">ETHICAL HACKER</h1>
+                <h2 class="text-6xl md:text-8xl font-bold mb-6 text-white tracking-tight">
+                    SABARI <span class="neon-text">(COBRA@404).</span>
+                </h2>
+                <p class="text-xl text-slate-400 max-w-2xl leading-relaxed font-light">
+                    Ethical defending specialist in high-performance digital architecture for securing the decentralized web. Available for specialized contracts from 2026.
+                </p>
+            </header>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-card p-8 rounded-sm relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 font-mono text-[10px] text-cyan-900">VER: 1.0.4</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Neural Link Interface</h3>
+                    <p class="text-slate-400 mb-6 font-light">Direct brain-to-browser communication protocol built with GMAX4 technologies.</p>
+                    <div class="flex gap-3">
+                        <span class="px-2 py-1 bg-cyan-950 text-cyan-400 text-xs font-mono border border-cyan-800">RUST</span>
+                        <span class="px-2 py-1 bg-cyan-950 text-cyan-400 text-xs font-mono border border-cyan-800">WASM</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-sm group">
+                    <h3 class="text-2xl font-bold text-white mb-2">Ghost Network</h3>
+                    <p class="text-slate-400 mb-6 font-light">Encrypted messaging system utilizing quantum-resistant cryptography.</p>
+                    <div class="flex gap-3">
+                        <span class="px-2 py-1 bg-cyan-950 text-cyan-400 text-xs font-mono border border-cyan-800">NODE.JS</span>
+                        <span class="px-2 py-1 bg-cyan-950 text-cyan-400 text-xs font-mono border border-cyan-800">AES-256</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-20 border-t border-cyan-900/30">
+            <button onclick="location.reload()" class="font-mono border border-cyan-500 px-8 py-3 text-cyan-500 hover:bg-cyan-500 hover:text-black transition-all">
+                TERMINATE SESSION
+            </button>
+        </footer>
+    </main>
+
+    <script>
+        // --- 1. BOOT SEQUENCE SCRIPT ---
+        const bootMessages = [
+            "Connecting to SECURE VPN...",
+            "Decrypting WEB PROGRAMMING ANALYSIS...",
+            "Injecting payload...",
+            "Bypassing firewall...",
+            "ACCESS GRANTED: WELCOME TO SABARI'S PORT FOLIO."
+        ];
+        
+        let msgIndex = 0;
+        const bootText = document.getElementById('boot-text');
+
+        function typeWriter(text, i, cb) {
+            if (i < text.length) {
+                bootText.innerHTML += text.charAt(i);
+                setTimeout(() => typeWriter(text, i + 1, cb), 30);
+            } else {
+                setTimeout(cb, 500);
+            }
+        }
+
+        function runBoot() {
+            if (msgIndex < bootMessages.length) {
+                bootText.innerHTML = "";
+                typeWriter(bootMessages[msgIndex], 0, () => {
+                    msgIndex++;
+                    runBoot();
+                });
+            } else {
+                // Trigger Portal Effect
+                document.getElementById('boot-screen').style.display = 'none';
+                const main = document.getElementById('main-ui');
+                main.classList.remove('hidden-ui');
+                main.classList.add('reveal');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        window.onload = runBoot;
+
+        // --- 2. BINARY RAIN SCRIPT ---
+        const canvas = document.getElementById('rain-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const binary = "01";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(2, 6, 23, 0.1)"; // Trails
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#00f2ff"; // Neon Blue
+            ctx.font = fontSize + "px monospace";
+            ctx.shadowBlur = 5;
+            ctx.shadowColor = "#00f2ff";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = binary.charAt(Math.floor(Math.random() * binary.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 50);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
